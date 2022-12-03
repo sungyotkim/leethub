@@ -31,4 +31,6 @@ function reverseBetween(head, left, right) {
   start.next = prev;
   tail.next = cur;
   return left === 1 ? prev : head; 
+  // if left == 1, we have no need to connect start list with reversed list reversed list itself is the start (or the head)
+
 };
