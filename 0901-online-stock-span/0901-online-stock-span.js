@@ -1,7 +1,6 @@
 
 function StockSpanner() {
   this.prices = [];
-  this.values = [];
 };
 
 /** 
@@ -10,17 +9,15 @@ function StockSpanner() {
  */
 StockSpanner.prototype.next = function(price) {
   let count = 1;
+  let prevPrices = this.prices.slice();
   
-  while (this.prices.length && this.prices[this.prices.length - 1] <= price) {
+  while (prevPrices.length && prevPrices[prevPrices.length - 1] <= price) {
     // remove the smaller price
-    this.prices.pop();
+    prevPrices.pop();
     // increment the counter
-    count += this.values.pop();
+    count++
   }
   this.prices.push(price);
-  this.values.push(count);
-  console.log(this.prices);
-  console.log("val", this.values)
   
   return count;
 };
