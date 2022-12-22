@@ -16,28 +16,29 @@ const numIslands = (grid) => {
   
   // dfs to check if land
   let dfs = (row, col) => {
+    seen[row][col] = true;
 
     // up
     if (row + 1 < rows && grid[row + 1][col] === '1' && !seen[row + 1][col]) {
-      seen[row + 1][col] = true;
+      // seen[row + 1][col] = true;
       dfs(row + 1, col);
     }
     
     // down 
     if (row - 1 >= 0 && grid[row - 1][col] === '1' && !seen[row - 1][col]) {
-      seen[row - 1][col] = true;
+      // seen[row - 1][col] = true;
       dfs(row - 1, col);
     }
     
     // right
     if (col + 1 < columns && grid[row][col + 1] === '1' && !seen[row][col + 1]) {
-      seen[row][col + 1] = true;
+      // seen[row][col + 1] = true;
       dfs(row, col + 1);
     }
     
     // left
     if (col - 1 >= 0 && grid[row][col - 1] === '1' && !seen[row][col - 1]) {
-      seen[row][col - 1] = true;
+      // seen[row][col - 1] = true;
       dfs(row, col - 1);
     }
   }
@@ -49,7 +50,7 @@ const numIslands = (grid) => {
       if (grid[row][col] === "1" && !seen[row][col]) {
         // found a new island
         islands++;
-        seen[row][col] = true;
+        // seen[row][col] = true;
 
         // add connected islands to dfs
         dfs(row, col);
