@@ -3,21 +3,18 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 function moveZeroes(nums) {
-  let left = 0;
-  let right = nums.length - 1;
+  let first = 0;
+  let second = 1;
   
-  while (left < right) {
-    if (nums[left] === 0) {
-      // remove element at index
-      nums.splice(left, 1);
-      // add to end
-      nums.push(0);
-      // no need to check last number
-      right--;
-    } else {
-      left++;
+  while (second < nums.length) {
+    if (nums[first] === 0 && nums[second] !== 0) {
+      nums[first] = nums[second];
+      nums[second] = 0;
+      first++;
     }
+    
+    if (nums[first] !== 0) first++;
+    
+    second++;
   }
-  
-  return nums;
 };
