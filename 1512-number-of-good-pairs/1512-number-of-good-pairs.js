@@ -5,33 +5,15 @@
 function numIdenticalPairs(nums) {
   const pairs = new Map();
   let ans = 0;
-  let i = 0;
-  let j = 1;
   
-  while (i < nums.length - 1) {
-    while (j < nums.length) {
-      let first = nums[i];
-      let second = nums[j];
-      
-      if (first === second) {
-        if (pairs.get(first)) {
-          pairs.get(first).push([i, j]);
-        } else {
-          pairs.set(first, [[i, j]]);
-        }
-      }
-      
-      j++;
-    }
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    let temp = pairs.get(num);
     
-    i++;
-    j = i + 1;
-  }
-  
-  for (const [key, arr] of pairs) {
-    for (let count = 0; count < arr.length; count++) {
-      ans++;
-    }
+    // if same number exists, all prev ones are a match to this one, so include prev count with this count
+    if (temp) ans += temp;
+    
+    pairs.set(num, temp ? temp + 1 : 1);
   }
   
   return ans;
